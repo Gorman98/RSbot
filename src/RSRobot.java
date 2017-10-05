@@ -31,4 +31,7 @@ public class RSRobot {
 	public void mouseMove(Rectangle rectangle){
 		
 	}
+	public void getMouseLoc(){
+		System.out.println(this.getCurrentPos());
+	}
 }
