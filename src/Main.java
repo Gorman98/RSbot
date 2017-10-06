@@ -1,4 +1,6 @@
 import java.awt.AWTException;
+import java.awt.Point;
+import java.awt.Color;
 
 public class Main {
 	RSRobot _bot;
@@ -6,7 +8,10 @@ public class Main {
 		// TODO Auto-generated constructor stub
 		_bot = new RSRobot();
 		while(true){
-			_bot.getMouseLoc();
+			Point point = _bot.getCurrentPos();
+			Color color = _bot.getColor(_bot.getCurrentPos());
+			System.out.println("Point: " + point);
+			System.out.println("Color: " + color);
 		}
 
 
