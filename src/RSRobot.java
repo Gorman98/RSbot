@@ -7,66 +7,95 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
-public class RSRobot {
-	Robot _rsBot;
-	int _dropX, _dropY, _dropTimes;
-	Point _dropPoint;
+public class RSRobot extends Robot{
+	Rectangle[][] inventoryCoordinates;
 	public RSRobot() throws AWTException {
-		_dropX = 1744;
-		_dropY = 736;
-		_dropTimes = 1;
-		_dropPoint = new Point(_dropX, _dropY);
 
-		_rsBot = new Robot();
 	}
-	public Color getColor(Point point){
-		point = this.getCurrentPos();
-		return 	_rsBot.getPixelColor((int)point.getX(), (int)point.getY());
+
+	/**
+	 * Gives the pixel color of the specified point.
+	 *
+	 * @param point pixel location
+	 * @return color at the pixel location
+	 */
+	public Color getColor(Point point) {
+		return getPixelColor(point.x, point.y);
 	}
-	public Point getCurrentPos(){
+
+	/**
+	 * Returns the current position of the mouse on the screen.
+	 *
+	 * @return current mouse location
+	 */
+	public Point mouseLoc() {
 		return MouseInfo.getPointerInfo().getLocation();
 	}
-	public void mouseLeftClick(){
-		_rsBot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-		_rsBot.delay((int)(90 + 20*Math.random()));
-		_rsBot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+	/**
+	 * Simulates a left click with a downpress of 90-110 ms.
+	 */
+	public void leftClick() {
+		mousePress(InputEvent.BUTTON1_DOWN_MASK);
+		delay((int)(90 + 20 * Math.random()));
+		mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 	}
-	public void mouseRightClick(){
-		_rsBot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
-		_rsBot.delay((int)(90 + 20*Math.random()));
-		_rsBot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+
+	/**
+	 * Simulates a right click with a downpress of 90-110 ms.
+	 */
+	public void rightClick() {
+		mousePress(InputEvent.BUTTON3_DOWN_MASK);
+		delay((int)(90 + 20 * Math.random()));
+		mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
 	}
-	public void mouseMove(Point point){
-		double x = point.getX();
-		double y = point.getY();
-		Rectangle rectangle = new Rectangle((int)x, (int)y, 5, 5);
+
+	/**
+	 * Moves the mouse from its current position to a random location in the target rectangle. This is performed along a bezier curve in time steps to prevent macro detection.
+	 *
+	 * @param rect the target rectangle
+	 */
+	public void moveMouseTo(Rectangle rect) {
 
 	}
-	public void getMouseLoc(){
-		System.out.println(this.getCurrentPos());
+
+	/**
+	 * Selects the menu option at index number where the first option index is 0.
+	 *
+	 * @param number index of the menu option to be selected
+	 */
+	public void menuOption(int number) {
+
 	}
-	public void dropItems(){
+
+	/**
+	 * Drops items from specified inventory slot(s).
+	 *
+	 * @param point contains the inventory slot coordinates of the item to be dropped. (0, 0) is the top left slot.
+	 */
+	public void dropItems(Point[] slot) {
 		//drop for willow logs will need to check the point color for other items
 		//right clicks the second item in your inventory to check if the color next to drop is the color it is looking for
 		//if it is moves to drop left clicks to drop the item
 		//continues through the entire inventory
-		this.mouseMove(_dropPoint);
-		this.mouseRightClick();
+		/*@author Ryan I'm leaving this in for now, but it will need to be re-implemented using specified inventory array coordinates and the menuOption method.
+		moveMouseTo(_dropPoint);
+		rightClick();
 		_dropPoint = new Point(_dropX,_dropY+54);
-		if(this.getColor(_dropPoint) == new Color(255,144, 64)){
-			this.mouseLeftClick();
+		if(getColor(_dropPoint) == new Color(255,144, 64)){
+			leftClick();
 			_dropTimes++;
-			if(_dropTimes < 5){
+			if(_dropTimes < 5) {
 				_dropPoint = new Point(_dropX+48, _dropY-54);
-				this.mouseMove(_dropPoint);
-			} else {
+				moveMouseTo(_dropPoint);
+			}
+			else {
 				_dropTimes = 0;
 				//1696
 				_dropPoint = new Point(_dropX-144, _dropY+44);
 				this.mouseMove(_dropPoint);
 			}
 			dropItems();
-		}
+		}*/
 	}
-
 }
