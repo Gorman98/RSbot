@@ -105,7 +105,7 @@ public class RSRobot extends Robot{
 							break;
 			case 'k': mask = KeyEvent.VK_K;
 							break;
-		  case 'l': mask = KeyEvent.VK_L;
+			case 'l': mask = KeyEvent.VK_L;
 							break;
 			case 'm': mask = KeyEvent.VK_M;
 			   			break;
@@ -157,11 +157,13 @@ public class RSRobot extends Robot{
 	 * @param point contains the inventory slot coordinates of the item to be dropped. (0, 0) is the top left slot.
 	 */
 	public void dropItems(Point[] slot) {
-		//drop for willow logs will need to check the point color for other items
-		//right clicks the second item in your inventory to check if the color next to drop is the color it is looking for
-		//if it is moves to drop left clicks to drop the item
-		//continues through the entire inventory
-		/*@author Ryan I'm leaving this in for now, but it will need to be re-implemented using specified inventory array coordinates and the menuOption method.
+		/*@authoer Kyle drop for willow logs will need to check the point color for other items
+		right clicks the second item in your inventory to check if the color next to drop is the color it is looking for
+		if it is moves to drop left clicks to drop the item
+		continues through the entire inventory
+		*/
+		/*@author Ryan I'm leaving this in for now, but it will need to be re-implemented using specified 
+		 * inventory array coordinates and the menuOption method.
 		moveMouseTo(_dropPoint);
 		rightClick();
 		_dropPoint = new Point(_dropX,_dropY+54);
@@ -180,5 +182,11 @@ public class RSRobot extends Robot{
 			}
 			dropItems();
 		}*/
+	}
+	public Color getPixelColor(){
+		return(getPixelColor((int)this.getCurrentPos().getX(), (int)this.getCurrentPos().getY()));
+	}
+	public Point getCurrentPos(){
+		return MouseInfo.getPointerInfo().getLocation();
 	}
 }

@@ -9,7 +9,7 @@ public class Main {
 		_bot = new RSRobot();
 		while(true){
 			Point point = _bot.getCurrentPos();
-			Color color = _bot.getColor(_bot.getCurrentPos());
+			Color color = _bot.getPixelColor();
 			System.out.println("Point: " + point);
 			System.out.println("Color: " + color);
 		}
