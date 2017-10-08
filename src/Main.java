@@ -8,7 +8,7 @@ public class Main {
 		// TODO Auto-generated constructor stub
 		_bot = new RSRobot();
 		while(true){
-			Point point = _bot.getCurrentPos();
+			Point point = _bot.mouseLoc();
 			Color color = _bot.getPixelColor();
 			System.out.println("Point: " + point);
 			System.out.println("Color: " + color);

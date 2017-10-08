@@ -184,9 +184,6 @@ public class RSRobot extends Robot{
 		}*/
 	}
 	public Color getPixelColor(){
-		return(getPixelColor((int)this.getCurrentPos().getX(), (int)this.getCurrentPos().getY()));
-	}
-	public Point getCurrentPos(){
-		return MouseInfo.getPointerInfo().getLocation();
+		return(getPixelColor((int)this.mouseLoc().getX(), (int)this.mouseLoc().getY()));
 	}
 }
